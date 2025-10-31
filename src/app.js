@@ -1,3 +1,2 @@
-import './styles.css'
-
-console.log("start")
+import './styles.css';
+console.log('start');
