@@ -8,7 +8,10 @@ export class ContextMenu extends Menu {
 		this.modules = [];
 	}
 
-	open() {
+	open({ x, y }) {
+		this.el.style.left = `${x}px`;
+		this.el.style.top = `${y}px`;
+
 		this.el.classList.add('open');
 	}
 
