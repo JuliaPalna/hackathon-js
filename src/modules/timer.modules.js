@@ -1,48 +1,41 @@
 import { Module } from '../core/module';
 
+import { getTime } from '../utils/timer';
+
 export class TimerModule extends Module {
 		trigger() {
-document.body.innerHTML = `
- <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  <div id="timer-container">
-    <div id="timer-display">Таймер</div>
-        <input type="text" id="timer-input" placeholder="MM:SS" maxlength="5">
-    <button onclick="startTimer()">Старт</button>
-        <button id="cancel-btn" onclick="cancelTimer()" style="display: none;">Отмена</button>
+			document.body.innerHTML += createTimerHTML();
 
-    </div>
-</body>
-</html>`
-  const timerContainer = ('#timer-container')
-  const timerDisplay = document.querySelector('#timer-display');
-  const timerInput = document.querySelector('#timer-input');
-  const cancelBtn = document.querySelector('#cancel-btn');
+		const timerContainer = ('#timer-container')
+		const timerDisplay = document.querySelector('#timer-display');
+		const timerInput = document.querySelector('#timer-input');
+		const buttonStart = document.querySelector('#button');
 
-  let countdown = null
-  function startTimer() {
-      const timeString = timerInput.value;
-      if (!isValidTimeFormat(timeString)) {
-          alert('Введите время в формате ММ:SS');
-            return;
-            }
-      const [minutes, seconds] = timeString.split(':').map(Number);
-      const totalSeconds = minutes * 60 + seconds;
+		let countdown = null;
 
-      if (totalSeconds <= 0) {
-           alert('Введите время больше 0');
-            return;
-            }
+		alert('Введите время в формате ММ:SS');
+		startBtn.addEventListener("click", startTimer)
 
-    timerInput.style.display = 'none';
-    const startButton = document.querySelector('button[onclick="startTimer()"]').style.display = 'none';
-            cancelBtn.style.display = 'block';
+		function startTimer() {
+				const timeString = timerInput.value;
+				if (!isValidTimeFormat(timeString)) {
+							return;
+							}
+
+				const [minutes, seconds] = timeString.split(':').map(Number);
+
+				updateDisplay(seconds);
+
+				const totalSeconds = minutes * 60 + seconds;
+
+				if (totalSeconds <= 0) {
+						alert('Введите время больше 0');
+
+							return;
+							}
+
+					timerInput.style.display = 'none';
+					buttonStart.style.display = 'none';
 
             let remainingSeconds = totalSeconds;
             updateDisplay(remainingSeconds);
@@ -55,23 +48,36 @@ document.body.innerHTML = `
                     clearInterval(countdown);
                     alert('Время вышло!');
                     timerContainer.remove();
+										buttonStart.removeEventListener('click', startTimer);
                 }
             }, 1000);
         }
 
-        function cancelTimer() {
-            clearInterval(countdown);
-            timerContainer.remove();
-        }
-
-        function updateDisplay(seconds) {
-            const mins = String(Math.floor(seconds / 60)).padStart(2, '0');
-            const secs = String(seconds % 60).padStart(2, '0');
-            timerDisplay.textContent = `${mins}:${secs}`;
-        }
+				const time = getTime(seconds);
+				timeDisplay.textContent = `${time.mins}:${time.secs}`;
 
 
-        function isValidTimeFormat(timeString) {
+        timerInput.addEventListener('input', function(event) {
+            let value = event.target.value.replace(/\D/g, '');
+            if (value.length >= 2) {
+                value = value.substring(0, 2) + ':' + value.substring(2, 4);
+            }
+            event.target.value = value;
+        });
+
+
+		}
+	}
+	function createTimerHtml() {
+					return `
+							<div id="timer-container">
+							<div id="timer-display">Таймер</div>
+								<input type="text" id="timer-input" placeholder="MM:SS" maxlength="5">
+							<button id="button">Старт</button>
+							</div>
+						`;
+					}
+	function isValidTimeFormat(timeString) {
           const parts = timeString.split(':');
           if (parts.length !== 2) return false;
 
@@ -85,13 +91,4 @@ document.body.innerHTML = `
           );
         }
 
-
-        timerInput.addEventListener('input', function(event) {
-            let value = event.target.value.replace(/\D/g, '');
-            if (value.length >= 2) {
-                value = value.substring(0, 2) + ':' + value.substring(2, 4);
-            }
-            event.target.value = value;
-        });
-		}
 		// Внесены изменения
