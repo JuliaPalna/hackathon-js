@@ -1,4 +1,5 @@
 import { Module } from '../core/module';
+export class ClicksModule extends Module {}
 import '../styles/stylesClicker.css';
 
 export class ClicksModule extends Module {

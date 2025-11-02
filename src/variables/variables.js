@@ -8,4 +8,7 @@ export const MODULE_LIST = [
 		text: 'таймер'
 	},
 	
+		type: 'message',
+		text: 'Вызвать сообщение',
+	},
 ];

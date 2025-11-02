@@ -1,6 +1,9 @@
 import { ContextMenu } from './menu';
 import './styles.css';
 import { MODULE_LIST } from './variables/variables';
+import { MessageModule } from './modules/message.module';
+
+import { CalendarModule } from './modules/calendar.module';
 console.log('start');
 
 const menu = new ContextMenu('.menu');
@@ -20,3 +23,6 @@ MODULE_LIST.forEach((moduleItem) => {
 	}
 	menu.add(newModule);
 });
+
+const message = new MessageModule('type', 'text');
+message.trigger();
