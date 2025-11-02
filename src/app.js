@@ -2,6 +2,7 @@ import './styles.css';
 import { MODULE_LIST } from './variables/variables';
 import { MessageModule } from './modules/message.module';
 
+import { CalendarModule } from './modules/calendar.module';
 console.log('start');
 
 const menu = document.querySelector('.menu');
