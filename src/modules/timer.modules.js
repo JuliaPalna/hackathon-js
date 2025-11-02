@@ -91,4 +91,3 @@ export class TimerModule extends Module {
           );
         }
 
-		// Внесены изменения
