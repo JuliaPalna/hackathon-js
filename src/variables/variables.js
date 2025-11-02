@@ -4,11 +4,15 @@ export const MODULE_LIST = [
 		text: 'Считать клики (за 3 секунды)',
 	},
 	{
-		type: 'timer', 
-		text: 'таймер'
+		type: 'timer',
+		text: 'Таймер',
 	},
-	
+	{
 		type: 'message',
 		text: 'Вызвать сообщение',
+	},
+	{
+		type: 'calendat',
+		text: 'Показать календарь',
 	},
 ];
