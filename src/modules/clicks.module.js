@@ -3,8 +3,7 @@ import '../styles/stylesClicker.css';
 
 export class ClicksModule extends Module {
   trigger() {
-
-    document.body.innerHTML = `
+    document.body.innerHTML += `
       <div class="container">
         <button id="clickButton" class="click-button">Кликай!</button>
         <div id="timer" class="timer"></div>
@@ -58,6 +57,9 @@ export class ClicksModule extends Module {
             if (container) {
               container.remove(); 
             }
+
+            clickButton.removeEventListener('click', handleClick);
+            clickButton.removeEventListener('dblclick', handleDoubleClick);
           }, 5000); 
         }
       }, 1000);
