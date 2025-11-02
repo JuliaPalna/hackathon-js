@@ -1,6 +1,7 @@
 import { Module } from '../core/module';
 import * as utilsDate from '../utils/getFormatDate';
 import { createCalendar } from '../utils/createTable';
+import '../styles/calendar.css';
 
 export class CalendarModule extends Module {
 	trigger() {
@@ -19,6 +20,11 @@ export class CalendarModule extends Module {
 		document.body.innerHTML += tableCalendar;
 
 		addDatesToCalendar(numberOfDaysOfMonth, dayWeekOfFirstDayOfMonth);
+
+		setTimeout(() => {
+			const calendar = document.querySelector('.calendar');
+			calendar.remove();
+		}, 5000);
 	}
 }
 

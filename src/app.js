@@ -9,6 +9,3 @@ MODULE_LIST.forEach((moduleItem) => {
 	const { type, text } = moduleItem;
 	menu.innerHTML += `<li class="menu-item" data-type="${type}">${text}</li>`;
 });
-
-const calendarModule = new CalendarModule('type', 'text');
-calendarModule.trigger();

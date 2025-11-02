@@ -16,7 +16,7 @@ export function getNumberOfWeeks(
 	numberOfDaysOfMonth,
 	dayWeekOfFirstDayOfMonth,
 ) {
-	return Math.floor((numberOfDaysOfMonth + dayWeekOfFirstDayOfMonth) / 7);
+	return Math.ceil((numberOfDaysOfMonth + dayWeekOfFirstDayOfMonth) / 7);
 }
 
 export function getFormatDateMMYYY(initialDate) {

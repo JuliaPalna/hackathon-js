@@ -1,8 +1,26 @@
-function createTableRowToOneWeek() {
+export function createCalendar(date, numberOfWeeks) {
+	const tableHead = createTableHead();
+	const table = createTableBody(numberOfWeeks);
+
+	return `
+		<div class="calendar">
+			<h1 class="title calendar_title">
+			${date}
+			</h1>
+			<table class="calendar_table table">
+			${tableHead}${table}
+			</table>
+		</div>
+	`;
+}
+
+function createTableHead() {
 	let tableRow = `<tr>`;
 
+	const week = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'];
+
 	for (let i = 0; i < 7; i++) {
-		tableRow += `<td class="cell"></td>`;
+		tableRow += `<th class="table_cell">${week[i]}</th>`;
 	}
 	tableRow += `</tr>`;
 
@@ -20,8 +38,13 @@ function createTableBody(numberWeek) {
 	return bodyTable;
 }
 
-export function createCalendar(date, numberOfWeeks) {
-	const table = createTableBody(numberOfWeeks);
+function createTableRowToOneWeek() {
+	let tableRow = `<tr>`;
 
-	return `<div><h1>${date}</h1><table class="table">${table}</table></div>`;
+	for (let i = 0; i < 7; i++) {
+		tableRow += `<td class="table_cell"></td>`;
+	}
+	tableRow += `</tr>`;
+
+	return tableRow;
 }
