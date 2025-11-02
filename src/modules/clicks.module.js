@@ -1,11 +1,23 @@
 import { Module } from '../core/module';
+import '../styles/stylesClicker.css';
 
-// добавил триггер и после него добавил код
 export class ClicksModule extends Module {
   trigger() {
-    let singleClicks = 0;
-    let doubleClicks = 0;
-    let totalClicks = 0;
+
+    document.body.innerHTML = `
+      <div class="container">
+        <button id="clickButton" class="click-button">Кликай!</button>
+        <div id="timer" class="timer"></div>
+        <div id="results" class="results"></div>
+      </div>
+    `;
+
+    this.initClicker();
+  };
+
+  initClicker() {
+    let numberSingleClicks  = 0;
+    let numberDoubleClicks  = 0;
     let isCounting = false;
     let timerInterval; 
 
@@ -17,9 +29,8 @@ export class ClicksModule extends Module {
       if (isCounting) return;
 
       isCounting = true;
-      singleClicks = 0;
-      doubleClicks = 0;
-      totalClicks = 0;
+      numberSingleClicks  = 0;
+      numberDoubleClicks  = 0;
       resultsElement.textContent = ''; 
 
       clickButton.disabled = false;
@@ -41,6 +52,13 @@ export class ClicksModule extends Module {
           clickButton.disabled = true;
           clickButton.style.cursor = 'not-allowed'; 
           clickButton.style.opacity = '0.7'; 
+
+          setTimeout(function() {
+            const container = document.querySelector('.container');
+            if (container) {
+              container.remove(); 
+            }
+          }, 5000); 
         }
       }, 1000);
     }
@@ -51,26 +69,25 @@ export class ClicksModule extends Module {
         return;
       }
 
-      singleClicks++;
-      totalClicks++;
+      numberSingleClicks++;
     }
 
     function handleDoubleClick() {
       if (!isCounting) return;
 
-      doubleClicks++;
-      totalClicks++;
+      numberDoubleClicks++;
     }
 
     function showResults() {
+      const totalClicks = numberSingleClicks + numberDoubleClicks;
       resultsElement.innerHTML = `
         Сколько кликов сделано: ${totalClicks}<br>
-        Одинарных кликов: ${singleClicks}<br>
-        Двойных кликов: ${doubleClicks}
+        Одинарных кликов: ${numberSingleClicks}<br>
+        Двойных кликов: ${numberDoubleClicks}
       `;
     }
 
     clickButton.addEventListener('click', handleClick); 
     clickButton.addEventListener('dblclick', handleDoubleClick);
-      }
-}
+  }
+};
