@@ -1,5 +1,6 @@
 import './styles.css';
 import { MODULE_LIST } from './variables/variables';
+import { CalendarModule } from './modules/calendar.module';
 console.log('start');
 
 const menu = document.querySelector('.menu');
