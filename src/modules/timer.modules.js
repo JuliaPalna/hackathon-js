@@ -14,7 +14,8 @@ export class TimerModule extends Module {
 		let countdown = null;
 
 		alert('Введите время в формате ММ:SS');
-		startBtn.addEventListener("click", startTimer)
+		buttonStart.addEventListener('click', startTimer);
+
 
 		function startTimer() {
 				const timeString = timerInput.value;
@@ -23,9 +24,7 @@ export class TimerModule extends Module {
 							}
 
 				const [minutes, seconds] = timeString.split(':').map(Number);
-
 				updateDisplay(seconds);
-
 				const totalSeconds = minutes * 60 + seconds;
 
 				if (totalSeconds <= 0) {
@@ -33,6 +32,8 @@ export class TimerModule extends Module {
 
 							return;
 							}
+
+
 
 					timerInput.style.display = 'none';
 					buttonStart.style.display = 'none';
@@ -49,13 +50,14 @@ export class TimerModule extends Module {
                     alert('Время вышло!');
                     timerContainer.remove();
 										buttonStart.removeEventListener('click', startTimer);
+
                 }
             }, 1000);
         }
-
-				const time = getTime(seconds);
-				timeDisplay.textContent = `${time.mins}:${time.secs}`;
-
+				function updateDisplay(seconds) {
+					const time = getTime(seconds);
+					timerDisplay.textContent = `${time.mins}:${time.secs}`;
+				}
 
         timerInput.addEventListener('input', function(event) {
             let value = event.target.value.replace(/\D/g, '');
@@ -90,4 +92,5 @@ export class TimerModule extends Module {
             seconds >= 0 && seconds <= 59
           );
         }
+
 
