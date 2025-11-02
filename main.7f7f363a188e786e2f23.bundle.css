@@ -1,0 +1,104 @@
+@import url(https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap);
+.calendar_table {
+	border-collapse: collapse;
+}
+
+.table_cell {
+	border: 1px solid #ddd;
+	padding: 8px;
+	text-align: left;
+	width: 20px;
+	height: 20px;
+}
+
+.calendar_title {
+	margin-bottom: 15px;
+}
+
+.container {
+    text-align: center;
+}
+
+.click-button {
+    background-color: #ff4444;
+    color: white;
+    border: none;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.click-button:active {
+    background-color: #cc0000;
+}
+
+.timer {
+    font-size: 24px;
+    margin: 20px 0;
+}
+
+.results {
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-size: 14px;
+	font-family: 'Roboto', sans-serif;
+	height: 100vh;
+	width: 100%;
+	padding: 2rem;
+}
+
+.menu {
+	position: fixed;
+	z-index: 1000;
+	width: 150px;
+	background: #1b1a1a;
+	border-radius: 5px;
+	display: none;
+	list-style: none;
+}
+
+.menu.open {
+	display: block;
+}
+
+.menu .menu-item {
+	padding: 8px 10px;
+	font-size: 1rem;
+	color: #eee;
+	cursor: pointer;
+	transition: background-color 0.2s ease-in;
+	border-radius: inherit;
+}
+
+.menu .menu-item:hover {
+	background: #343434;
+}
+
+.div-message {
+	position: fixed;
+	padding: 12px 24px;
+	border-radius: 10px;
+	border: 3px solid red; 
+	box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+	max-width: 250px;
+	font-family: Arial, sans-serif;
+	font-size: 14px;
+	text-align: center;
+	background: rgba(0, 0, 0, 0.8);
+	color: white;
+	z-index: 9999;
+	transition: all 0.3s ease;
+	opacity: 1;
+}
